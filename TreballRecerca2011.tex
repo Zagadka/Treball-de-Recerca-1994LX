@@ -1,0 +1,488 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{geometry}         
+\geometry{a4paper} 
+\usepackage[USenglish]{babel}
+\usepackage{setspace}
+\usepackage{graphicx} 
+%\usepackage{subfig} %%Subfigures inside a figure
+%\usepackage{tikz} %%Generate vector graphics from within LaTeX
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{fancyhdr}
+\setlength{\headheight}{15.2pt}
+\pagestyle{fancy} 
+\title{Orbit Determination of the asteroid 1994LX}
+\author{Mireia Ib\`{a}\~{n}ez Cid}
+\date{\today}
+\begin{document}
+\maketitle
+\clearpage
+\fancyhf{}
+\lhead{Mireia Ib\`{a}\~{n}ez Cid}
+\rhead{Orbit Determination of the asteroid 1994LX}
+\cfoot{\thepage}
+\onehalfspacing
+\tableofcontents 
+\clearpage
+\pagestyle{fancy} 
+
+\section{Aims of the project}\label{aims}
+
+\indent In this first section the main goals of the study will be determined, as well as a brief set of parameters related to the determination of an orbit will be defined.
+\newline
+\indent The asteroid 1994LX is labelled as a Near Earth Object (NEO), fact that it defines it as a celestial body with an orbit less than 1.3AU far away from the Earth. Asteroids among this category have been the object of several studies, as they special characteristics could help us to understand the formation of our Solar System ---as in such times, when the planets were formed, the impact of this kind of asteroids was very common. On the other hand, this kind of celestial bodies are characterized by another interesting fact that makes them deserve to be studied: the risk of being hit by one of them. For this reason, it is essential for us to know with a certain degree of precision what orbit do the most near asteroids to the Earth follow, so as to be able to predict if one impact would be possible and how we could avoid it.
+
+
+In this study, the orbit of the asteroid 1994LX will be determined by using a series of three observations made with a 14" Meade telescope in Westmont College, California. The Orbital Elements and the $r$ and $\dot{r}$ vectors of the asteroid will be described by using Gauss's Method and the f and g series. Once the orbit of the mentioned asteroid is determined, it will be compared to the values found by the JPL (NASA) and then the odds of this asteroid hitting the Earth will be evaluated.
+
+\newpage
+
+\section{Background}\label{background}
+
+
+\indent So as to have a full understanding for this study, it is needed to know what coordinates will be used as reference points and what exactly is what we want to find, i.e. the Orbital Elements. In this section, both concepts will be briefly defined.
+\subsection{Description of Celestial Coordinates}
+
+
+\indent When one aims to study any kind of physical system, one of the most important steps is to determine with exactitude where in the space is the object of study placed. For this purpose, a set of reference systems with its own coordinate elements are typically used in physics and mathematics, as the Cartesian plain with x, y and z coordinates or the latitude and longitude coordinates when speaking about the situation of some point in the Earth's surface. In this study the astronomical coordinates will be used when situating any kind of celestial body in space.
+
+ Astronomical coordinates are determined by two elements: the Right Ascension (RA) and the Declination (Dec) of the object inside a frame of reference, named the Celestial Sphere. The Celestial Sphere is an imaginary sphere concentric with the earth but infinitely far away. The entire Celestial Sphere rotates around the earth from east to west once per day. There are some elements in the Celestial Sphere that have certain special characteristics, as the Vernal Equinox, which is the point on the Celestial Sphere where the Sun appears to be on the spring equinox, or the Celestial Equator, which is an imaginary circle on the Celestial Sphere that is the projection of the earth's equator. As it has been mentioned before, an object placed in some point in the Celestial Sphere is described by two coordinates, RA and Dec. The Right Ascension is the coordinate (usually measured in hours, minutes and seconds of time) that describes how far east an object is on the Celestial Sphere relative to the Vernal Equinox point. On the other hand, the Declination coordinate is described as the angle between an object on the Celestial Sphere and the Celestial Equator(usually measured in degrees, arcminutes and arcseconds). Declination can be thought of as a kind of Celestial Latitude, since it gives the north-south position of an object on the Celestial Sphere.
+
+\subsection{Description of Orbital Elements}
+
+
+\indent It is well known that the path followed by bodies orbiting a central body have an elliptical shape (considering a bound orbit), as stated in Kepler's First Law. Nevertheless, this is only true when considering a mathematically ideal situation. A real orbit (and hence, it's Orbital Elements) changes over time due to gravitational perturbations by other objects and the effects of relativity. In this study this gravitational perturbations are going to be neglected, that is, a Kepler Orbit will be assumed.
+
+ In order to determine the orbit of a celestial body, it is needed to know its Orbital Elements. Orbital Elements are a set of six parameters that, given a frame of reference and a specified point in time, can unambiguously define an arbitrary and unperturbed point. These parameters represent the shape and size of the orbit, its orientation in space and the position of an object in its orbit as a function of time. The six different Orbital Elements are briefly described below:
+\begin{itemize}
+	\item \textbf{Semi major axis ($a$):} As it is stated in Kepler's first Law, bound orbits have the shape of an ellipse. Consequently, this kind of orbits satisfy the equation $\frac{x^{2}}{a^{2}} + \frac{y^{2}}{b^{2}} =1$, which is the equation of an ellipse. The semi-major axis, $a$, determines the size of the elliptical orbit.
+	\item \textbf{Eccentricity ($e$):} The eccentricity provides a measure of the shape of the elliptical orbit. When relating it to the semi-major and semi-minor($b$) axis, yields the expression $e = \sqrt{1 - \frac{b^{2}}{a^{2}}}$. Therefore, a circular orbit ($a = b$) has $e = 0$, while a parabolic one ($b = 0$) has $e = 1$.
+	\item \textbf{Inclination ($i$):} The inclination describes the angle between the orbital plane and the chosen plane of reference. For orbits in the Solar System, the reference plane is the ecliptic, which is defined as the plane of the Earth's orbit. For this reason, Earth's orbit has $i = 0$.
+	\item \textbf{Longitude of the Ascending Node ($\Omega$):} The \emph{ascending} and \emph{descending} nodes of an orbit in the Solar System are the points at which the orbital plane and the plane of the ecliptic intersect. The Ascending Node is where the orbiting object moves from the south of the ecliptic plane towards the north. A line connecting the two nodes is the line of nodes. The longitude of the ascending node is the angle between a characteristic direction (the Vernal Equinox in the case of the solar system) and the ascending node.
+	\item \textbf{Argument of Perihelion ($\omega$):} An orbit pericenter is the point at which the orbit is closest to the object about which it is orbiting (which is placed at one of the orbit's foci). In the case of the solar system, where the central object is the Sun, the pericenter is named \emph{perihelion}. Thus, the Argument of Perihelion defines the orientation of the ellipse in the orbital plane. 
+	\item \textbf{Mean Anomaly ($M$):} The Mean Anomaly defines the position of the orbiting body along the ellipse at a specified point in time.
+\end{itemize}
+\begin{figure}[h]
+	\centering
+		%\includegraphics[scale= 0.5]{orbitalelements.png}
+	\caption{Orbital Elements}
+	\label{fig:orbitalelements}
+\end{figure}
+
+\newpage
+
+\section{Data collection methods}\label{obtention}
+
+ \indent In order to successfully determine the orbit of the asteroid, the first step is to acquire at least three sets of good images taken in different days. In each set of images it is needed to have the asteroid clearly identified, as well as the maximum number of reference stars surrounding it. In this chapter the methods used to obtain the images and the corresponding filtering procedures will be described.
+\subsection{Obtaining images from observations}\label{observations}
+\subsubsection{Choosing a good asteroid}
+
+
+\indent If we want to obtain images with a high degree of quality, observations need to be planned in advance, so as to know when is the optimal time to perform them and whether the chosen celestial object is appropriate for our latitude and longitude. Namely, the most important characteristics for deciding if we are trying to observe an appropriate asteroid considering our situation are:
+\begin{enumerate}
+	\item Magnitude: The magnitude of a celestial object determines how bright is it. Therefore, the brighter an asteroid is, the easier is to observe. In order to perform observations without difficulty, the magnitude of the asteroid needs to be less than 17.5.
+	\item Declination: The declination of the asteroid needs to be greater than -30º. Considering our situation in the earth globe, a celestial object with a declination smaller than -30º would not rise above the horizon.
+	\item Date of opposition: Opposition occurs when the celestial object we want to observe is on the opposite side of the sky the Sun is, i.e. when its ecliptical longitude differs by 180º recpect with the Sun's. We take into account this fact since when this situation happens the celestial object we are observing recieves sun's rays more perpendicularly.
+	\item Distance of the asteroid: Since we are interested in studying Near-Earth asteroids, the Sun-to-asteroid distance of the asteroid should be less than 1.4AU (inside the orbit of Mars).
+\end{enumerate}
+
+ The asteroid chosen for this study was checked to accomplish all this requirements, having an average magnitude of 16, a declination that ranged between -17º and -30º, a date of opposition at ... and placed at a distance of ...
+
+ The optimal time for performing observation sessions is when the target celestial object is transiting, i.e. when we can observe it right above our head. The asteroid 1994LX had a transit time placed between 8:00 and 10:00 UT (source: JPL Horizons), for this reason all observations were made inside this time range.
+
+\subsubsection{Observation sessions}
+
+\indent Observation sessions were performed using a 14" Meade telescope placed at Westmont College (Santa Barbara, California). Each observation session followed the same procedure, having the common final purpose of obtaining a set of images so that when blinking them the trajectory of the asteroid was visible when compared to the background of reference stars.
+
+ Before taking any series of images, the first step was to focus the telescope. This was made by choosing one bright reference star, slewing the telescope to the position the chosen star was supposed to be*, centring and focusing it and finally synchronizing the telescope to the new coordinates obtained. Once this procedure had been followed, the telescope could be slewed to the RA and Dec the asteroid we wanted to observe was supposed to appear* [*stuff about observation notebook].
+\subsection{Filtering obtained data}\label{filtering}
+
+ \indent Each time a set of images was obtained a filtering process was performed in order to properly analyse the acquired data. This process consisted on two basic steps: finding the centroid of the asteroid and applying the Least Squares Plate Reduction (LSPR) technique,\paragraph{Centroiding} The purpose of the \textit{centroiding} process was to ---using either one or multiple images where the asteroid was clearly visible---, find the $X$ and $Y$ values of the pixel of most intensity within the asteroid image. In order to perform this task, a Python program was written so as to make the data reduction process more efficient. The program took as input one of the taken images, and had the user specify in which $X$ and $Y$ coordinates was approximately the asteroid placed. Then, the program performed a weighted average within all the pixels that were inside a certain range taking as a centre the coordinate entered by the user, and outputted the coordinates where the pixel with the most intensity was found, i.e. the coordinates of the centroid of the asteroid.
+\paragraph{LSPR} Once the centroid of the asteroid had been found, the next step to follow was to determine the RA and Dec coordinates the asteroid had using the taken picture as reference. In order to achieve this purpose the LSPR technique was applied by writing a Python program that, taking the RA and Dec for $n$ reference stars (measured from a reliable source, as JPL database), $X$ and $Y$ coordinates for $n$ stars measured on the CCD image and the $X$ and $Y$ coordinates for the asteroid (those coordinates obtained from the centroiding process) measured on the CCD image. \newline \indent The RA and Dec of the asteroid were found by solving a system of linear equations (see eq. 1) built using as a parameters the input data mentioned before.
+\begin{align} \alpha_{i} &= b_{1} + a_{11}x_{i} + a_{12}y_{i} \notag \\ \delta_{i} &= b_{2} + a_{21}x_{i} + a_{22}y_{i} \end{align}. 
+\subsection{From observations to $r$ and $\dot{r}$}
+
+ \indent As it has been stated in earlier sections, an Orbit Determination consists of determining which are the Orbital Elements of a certain celestial body. Nevertheless, these quantities cannot be obtained directly by the observations, so it is needed to follow a set of steps so as to relate the observed magnitudes (RA, Dec and time) of the asteroid to the magnitudes we actually want to determine.
+
+ \indent In the universal law of gravitation and three Newton's Laws of mechanics, the physical quantities that determine an orbit are $\vec{r}$\footnote[1]{Asteroid-to-sun vectors}, $\vec{\dot{r}}$, $\vec{\ddot{r}}$ and $M_{\odot}$\footnote[2]{Explain what $M_{\odot}$ is}. Thus, it is first needed to determine these quantities so as to successfully find the 6 Orbital Elements that describe the orbit.
+
+ \indent If we analyse our situation as terrestrial observers (see fig.1) we will be able to see that we can only observationally determine the unit vector 
+\begin{equation}\hat{\rho}= (\cos\alpha \cos\delta)\hat{i} + (\sin\alpha \cos\delta)\hat{j}  + (\sin\delta)\hat{k} \end{equation}
+\begin{figure}[h]
+	\centering
+		%\includegraphics{fig1.jpg}
+	\label{fig:fig1}
+\end{figure}
+\indent Thus, given that:
+\begin{itemize}
+\item  $\vec{R}$ is the vector from Earth to the sun.\footnote[3]{This is a known value that can be obtained from a source as the JPL database}
+\item $\vec{r}$ is the vector from the sun to the asteroid.
+\item $\vec{\rho}$ is the vector from the Earth to the asteroid. Note that in this case we do know its unit vector $(\hat{\rho})$ thanks to the observations, but we ignore the magnitude of it.
+\end{itemize}
+Then, it is possible to establish the following relationships:
+\begin{equation}\vec{r}= \vec{\rho} - \vec{R}= \rho\hat{\rho} - \vec{R}\end{equation}
+\begin{equation}\vec{\dot{r}}= \dot{\rho}\hat{\rho} +     \rho\dot{\hat{\rho}} - \dot{\vec{R}}\end{equation}
+\begin{equation}\vec{\ddot{r}}= \ddot{\rho}\hat{\rho} +     \rho\ddot{\hat{\rho}} - \ddot{\vec{R}}\end{equation}
+As we said before, we only know the $\hat{\rho}$
+vector (observed in three different observations), but we do not know $\vec{\rho}$, $\vec{r}$ or their derivatives. In further sections we will discuss how to determine these quantities using the materials we have.
+
+\newpage
+
+\section{Data processing methods}\label{processing}
+
+ In this section the mathematical nature of the studied physical phenomena will be shown. By deriving the main equations of classical mechanics, that is, the Universal Law of Gravitation, Newton's equation of motion and the Conservation of Energy law the shape, position and time of the orbit will be deduced. Nevertheless, establishing these relationships will not be enough to consider the Orbit Determination complete, as it is needed to know the Orbital Elements as well. For this purpose, the Method of Gauss will be used. Finally, ...
+\subsection{Relating $r$ and $\dot{r}$ to Orbital Elements using physics}\label{physics}
+\subsubsection{Universal Gravitation}
+
+ When considering the orbit of a celestial body, we have to take into account what are the forces that cause its movement, that is, identify the nature of the forces acting upon that body. In this case, the case of a celestial orbit, we can consider that the only force the body experiences is that caused by the gravity force. As stated in Newton's Universal Law of Gravitation, each body that possesses mass causes gravitational effects to other bodies inversely proportional to the square of the distance that exists between them. In the present case we are studying, i.e. the orbit of an asteroid inside the Solar System, we could define the orbit of such celestial body as the sum of the gravitational attractions caused by the presence of all the other planets:
+\begin{equation}
+\vec{F} = \frac{GM_{\odot}m}{r^{2}} + \frac{GM_{Earth}m}{r^{2}} + \frac{GM_{Jupiter}m}{r^{2}} ...
+\end{equation}
+It can be easily noted that the sum of all the forces that are acting upon the asteroid caused by diverse celestial bodies would yield to a copious equation extremely difficult to solve. Moreover, if we were to consider all the bodies exerting force into the asteroid, one would find out that the force caused by the minor planets (e.g. Mercury) could be practically neglected when compared to the force caused by other major celestial bodies, as the Sun. For this reason, in this study the gravitational attraction caused by the Sun will be only considered, thus yielding to this expression for defining the gravitational forces acting upon the asteroid:
+\begin{equation}
+\vec{F} = \frac{GM_{\odot}m}{r^{2}}\hat{r}
+\end{equation} 
+\subsubsection{The Equations of Motion}
+Let's now recall Newton's Second Law. As we know that the force acting upon a body can be as well expressed by
+\begin{equation}
+\vec{F} = m\vec{a}
+\end{equation}
+we can then equal this expression with the Universal Law of Gravitation
+\begin{align}
+\vec{F} &= m\vec{a}          \notag \\ &= \frac{GM_{\odot}m}{r^{2}}
+\end{align}
+Now, considering that 
+\begin{equation}\hat{r}= \frac{\vec{r}}{r}\end{equation}
+and, for convenience defining the expression
+\begin{equation}
+\mu = GM_{\odot}
+\end{equation}
+We can rewrite equation (4) as
+\begin{equation}
+\vec{\ddot{r}} = \frac{-\mu\vec{r}}{r^{3}}
+\end{equation}
+Obtaining an expression that satisfactorily specifies the orbital motion of the asteroid. Nevertheless, it is needed to consider further circumstances so as to have a complete understanding for the physical insight of the orbit.
+\subsubsection{The Orbit in Space}
+If we take now the cross product of $\vec{r}$ and $\vec{\ddot{r}}$ the orientation of the asteroid's orbital plane relative to our coordinate system can be found, yielding
+\begin{align}
+\vec{r}\times\vec{\ddot{r}} &= \vec{r}\times \frac{-\mu\vec{r}}{r^{3}}         \notag \\ &= - \mu(\frac{\vec{r}\times\vec{r}}{r^{3}}) = 0
+\end{align}
+Note that the left-hand-side of the equation can be expressed also as
+\begin{equation}
+\frac{d}{dt}(\vec{r}\times\vec{\dot{r}}) = (\vec{\dot{r}} \times \vec{\dot{r}}) + (\vec{r} \times {\vec{\ddot{r}}}) = \vec{r} \times \vec{\ddot{r}}
+\end{equation}
+Having into account that () is equal to zero, one can deduce that () is also equal to zero. Thus, the expression ($\vec{r}\times\vec{\dot{r}}$) is a constant
+\begin{equation}
+\vec{r}\times\vec{\dot{r}} = \vec{h} = constant
+\end{equation} 
+Recognizing now that the angular momentum $\vec{L} = \vec{r}\times\vec{p} = \vec{r}\times(m\vec{\dot{r}}) = m(\vec{r}\times\vec{\dot{r}})$, we can identify $\vec{h}$ as the \textit{angular momentum per unit mass}. Considering that $\vec{r}$ and $\vec{\dot{r}}$ lie in the orbital plane and hence $\vec{h}$ being perpendicular to that same plane, one can note that the direction of $\vec{h}$ determines the orientation of the orbit in space. This fact will be later used to develop the determination of the Orbital Elements $i$ (inclination) and $\Omega$ (longitude of the ascending node). 
+\newline \newline
+\indent Let's now consider the cross product between $\vec{h}$ and $\vec{\ddot{r}}$, so as to find the direction of the perihelion
+\begin{align}
+\vec{h}\times\vec{\ddot{r}} &=  \vec{h}\times(\frac{-\mu\vec{r}}{r^{3}})         \notag \\ &= -(\frac{\mu}{r^{3}})\vec{h}\times\vec{r}         \notag \\ &= -(\frac{\mu}{r^{3}})(\vec{r}\times\vec{\dot{r}})\times\vec{r}          \notag \\ &= -(\frac{\mu}{r^{3}})[(\vec{r}\cdot\vec{r})\vec{\dot{r}} - (\vec{r}\cdot\vec{\dot{r}})\vec{r}]
+\end{align}
+Note that the right-hand-side of the equation can be simplified by performing some actions. Let be first recognized that $\vec{r}\cdot\vec{r}= r^{2}$, and that $\vec{r}\cdot\vec{\dot{r}= |\vec{r}||\vec{\dot{r}}|cos\alpha = r\dot{r}}$. In this case $\dot{r}= \frac{dr}{dt}$ is the time rate of change of the radial component of $r$, making it different from $|\vec{\dot{r}}|$. Therefore, equation (16) can be rewritten as
+\begin{align}
+\vec{h}\times\vec{\ddot{r}}&= -\frac{\mu}{r^{3}}(r^{2}\vec{\dot{r}} - r\dot{r}\vec{r})          \notag  \notag \\ &= -\mu(\frac{\vec{\dot{r}}}{r} - \frac{\dot{r}}{r^{2}}\vec{r})          \notag \\ &= -\mu(\frac{r\vec{\dot{r}} - \vec{r}\dot{r}}{r^{2}})          \notag \\ &= \frac{d}{d\tau(\frac{\vec{r}}{r})}        \notag \\ &= -\mu\frac{d}{d\tau}
+(\hat{r})
+\end{align}
+
+ Now, if we integrate (17) with respect to time, we obtain: 
+\begin{align}
+\int(\vec{h}\times\vec{\ddot{r}})dt &= \vec{h}\times\int\vec{\ddot{r}}dt        \notag \\ &= -\mu\int d\hat{r}
+\end{align}
+Which yields
+\begin{equation}
+\vec{h}\times\vec{\dot{r}}= -\mu\hat{r} - \vec{P}
+\end{equation}
+
+ Where $\vec{P}$ is the constant of integration. It can be noted that the left hand of (19) will be maximum when the orbital velocity $\vec{\dot{r}}$ is maximum. Thus, when this expression reaches the maximum point, the right side of the equation will be also maximum. We know that the moment where the orbital velocity is higher is when the body is at perihelion, i.e. placed on the furthest point of the orbit respect to the sun. Note also that since $-\mu\hat{r} - \vec{P}$ will be largest when $\hat{r}$ and $\vec{P}$ are in the same direction, and this happens at perihelion, we can recognize that the vector $\vec{P}$ points towards the perihelion.
+\subsubsection{The Orbit in Shape}
+
+ Consider now the dot product of equation (19) with $\vec{r}$
+\begin{equation}
+(\vec{\dot{r}}\times\vec{h}) \cdot \vec{r} = \vec{r}\cdot(-\mu\hat{r} - \vec{P})
+\end{equation}
+Which can be rewritten as
+\begin{equation}
+-\vec{h}\cdot(\vec{r}\times\vec{\dot{r}}) = -\mu -(\vec{P}\dot{\vec{r}})
+\end{equation}
+Now, having into account that $\vec{r}\times\vec{\dot{r}} = \vec{h}$, we can state that
+\begin{equation}
+h^{2} = \mu r + (\vec{P}\cdot\vec{r})
+\end{equation}
+Noting that $\hat{r} = \frac{\vec{r}}{r}$ and $\vec{P} = P\hat{P}$, this equation becomes
+\begin{align}
+\frac{\frac{h^{2}}{\mu}}{r} &= 1 + \frac{\vec{P}\cdot\hat{r}}{\mu}        \notag \\ &= 1 + \frac{P}{\mu}(\hat{P}\cdot\hat{r})
+\end{align}
+As it had been noted before, $\hat{P}$ points towards the perihelion, therefore $\hat{P}\cdot\hat{r}$ is equal to the cosine of the angle between perihelion and the current position of the object, called the True Anomaly ($\nu$). Hence, equation (23) becomes
+\begin{equation}
+\frac{\frac{h^{2}}{\mu}}{r} = 1 + \frac{P}{\mu}cos\nu
+\end{equation}
+We can identify equation (24) as the equation for a conic section. In polar coordinates, with the origin at a focus and the angle $\alpha$ as shown, the equation of an ellipse is
+\begin{equation}
+r = \frac{\vartheta}{1 + e\cos\alpha}
+\end{equation}
+Where the eccentricity is given in terms of the ellipse's semi-major axis (a) and semi-minor axis (b) by
+\begin{equation}
+e = \sqrt{1 - \frac{b^{2}}{a^{2}}}
+\end{equation}
+and
+\begin{equation}
+\vartheta = \frac{b^{2}}{a}
+\end{equation}
+Now, one can note the elliptical nature of the shape of the orbit by identifying $\nu$ as $\alpha$, and $\frac{P}{\mu} = e$, as stated on Kepler's First Law.
+[Relate Kepler's Laws to the elliptical shape of the orbit using physics?]
+\subsubsection{Conservation of Energy}
+In this section the dot product between $2\vec{\dot{r}}$ and equation (12) will be considered. This will yield
+\begin{align}
+2\vec{\dot{r}}\cdot\vec{\ddot{r}} &= -2\mu(\frac{\vec{\dot{r}}\cdot\vec{r}}{r^{3}})        \notag \\ &= -2\mu(\frac{\dot{r}}{r^{2}})  
+\end{align}
+As it had been mentioned before, $\dot{r}$ corresponds to the time rate of change in the radial component of $\vec{r}$, i.e. $\vec{r} = v$. Now, if we take a closer look at the equation (28) we will be able to see that
+\begin{equation}
+2(\vec{\dot{r}}\cdot\vec{\ddot{r}}) = \frac{d}{d\tau}(\vec{dot}{r}\cdot\vec{\dot{r}})
+\end{equation}
+Now, if we recall that
+\begin{equation}
+\frac{d}{d\tau}(\frac{\mu}{r}) = \frac{-\mu\dot{r}}{r^{2}}
+\end{equation}
+We can obtain after integration that
+\begin{equation}
+\frac{d}{d\tau}(\vec{\dot}{r}\cdot\vec{\dot{r}}) = 2\frac{d}{d\tau}\frac{-\mu\dot{r}}{r^{2}} + E
+\end{equation}
+And hence
+\begin{equation}
+v^{2} = \vec{\dot{r}}\cdot\vec{\dot{r}} = 2(\frac{\mu}{r}) + E
+\end{equation}
+So as to find the value of the constant of integration E, we will consider the situation when the celestial object is at perihelion. As we know, in this case the velocity ($v_{p}$) is perpendicular to the radius $r = r_{p}$. Therefore, equation (32) yields
+\begin{equation}
+E = v^{2}_{p} - \frac{2\mu}{r_{p}}
+\end{equation}
+Note that since the orbit is elliptical, $r_{p} = a(1 - e)$
+\begin{equation}
+E = v^{2_{p}} - \frac{2\mu}{a(1 - e)}
+\end{equation}
+Recall now that $\vec{h} = \vec{r_{p}}\times\vec{v_{p}}$. As $\vec{r_{p}}$ and $\vec{v_{p}}$ are perpendicular, $h = |\vec{r_{p}}||\vec{v_{p}}|sin\alpha = r_{p}v_{p} = a(1 - e)v_{p}$. As we know from equation (22) that $h = [\mu a (1 - e^{2})]^{1/2}$, we can define that
+\begin{align}
+v_{p} &= \frac{h}{a(1 - e)}        \notag \\
+&= \frac{[\mu a (1 - e^{2})]^{1/2}}{a(1 - e)};
+\end{align}
+and hence
+\begin{equation}
+v^{2}_{p} = \frac{\mu(1 + e)}{a(1 - e)}
+\end{equation}
+If we now substitute this equation into equation (34) we will obtain that
+\begin{align}
+E &= \frac{\mu(1 + e)}{a(1 - e)} - \frac{2\mu}{a(1 - e)}        \notag \\ &= \frac{-\mu}{a}
+\end{align}
+Having now defined the value of the constant of integration E, we can come back to equation (32) and rewrite it as
+\begin{equation}
+\vec{\dot{r}}\cdot\vec{\dot{r}} = v^{2} = \mu(\frac{2}{r}-\frac{1}{a})
+\end{equation}
+Hence, what can be deduced from this is the fact that the energy of an object is a function of only one orbital element, namely the semi-major axis $a$.
+\subsubsection{The Orbit in Time}
+So as to determine the position of the asteroid a given time $t$, we need to know what the $r$ and $\nu$ components are (see figure ...). In order to achieve this purpose, we first recall that $x = r\cos\nu$ and $y = y\cos\nu$. Having this into consideration, we can now express the velocity $v$ and the angular momentum $h$ in terms of $r$ and $\nu$. We know that
+\begin{align}
+v^{2} &= \dot{x^{2}} + \dot{y^{2}}        \notag \\
+&= (\dot{r}\cos\nu - r\sin\nu\dot{\nu})^{2} + (\dot{r}\sin\nu + r\cos\nu\dot{\nu})^{2}        \notag \\
+&= \dot{r^{2}} + r^{2}\dot{\nu^{2}}
+\end{align}
+Note that the scalar quantity $\dot{r}$ corresponds to the radial component of the velocity, hence parallel to $r$, while the scalar quantity $r\dot{\nu}$ is the tangential component of the velocity. Thus, the vector quantity $\vec{\dot{r}}$ can be expressed by $\vec{\dot{r}} = \vec{v} = \dot{r}\hat{r} + r\dot{\nu}\hat{\nu}$, as shown in figure .... In this case, the unit vectors $\hat{r}$ and $\hat{\nu}$ are orthogonal. Let's define now the angular momentum as
+\begin{align}
+\vec{h} &= \vec{r} \times \vec{v}        \notag \\
+&= (r\hat{r}) \times (\dot{\hat{r}} + r\dot{\nu}\hat{\nu})        \notag \\
+&= r\dot{r}(\hat{r}\times\hat{r}) + r^{2}\dot{\nu}(\hat{r}\times\hat{\nu})
+\end{align}
+As $\hat{r}\times\hat{r} = 0$ and $\hat{r}\times\hat{\nu}$ is a unit vector perpendicular to the orbit plane, we can define $\hat{h} = \hat{r}\times\hat{\nu}$, where $\hat{h}$ is a unit vector in the direction of the angular momentum vector. Hence, the magnitude of $\vec{h}$ can be expressed as $h = r^{2}\dot{\nu}$.
+\newline
+\indent Now that we obtained $h$ in terms of $r$ and $\nu$, the next step is to find $r(t)$ and $\nu(t)$, i.e. the position of the asteroid as a function of time. In order to do it, it is needed to define a new variable called the eccentric anomaly ($E$). So as to define it, we first need to circumscribe a circle around the elliptical orbit (see fig whatever). Given that the object is at position A, with coordinates $r$,$\nu$, if we draw a line through A such that it is perpendicular to the line from the centre to the focus, we can now call B as the point where this line intersects the circle. The eccentric anomaly is the angle formed between B and the plain pointing towards the perihelion. Note that the radius of the circumscribed circle is the semi-major axis $a$ of the elliptical orbit.
+[fig]
+In this case $x_{e}$ and $y_{e}$ are the coordinates of the asteroid in the coordinate frame centred in the sun. On the other hand, we can define $x_{c}$ and $y_{c}$ as the coordinates of the point B in the coordinate frame centred in the circle. Since the distance between the focus (in this case the sun) and the centre of the circle is $ae$
+\begin{equation}
+x_{c} = x_{e} + ae
+\end{equation}
+and, following the same procedure
+\begin{align}
+x_{e} &= r\cos\nu        \notag \\
+y_{e} &= r\sin\nu        \notag \\
+x_{c} &= a\cos E        \notag \\
+y_{c} &= a\sin E 
+\end{align}
+And hence $x_{e} = x_{c} - ae = a\cos E - ae = a(\cos E - e)$. Recalling that the equation for the ellipse is 
+\begin{equation}
+r\frac{a(1 - e^{2})}{1 + e\cos\nu}
+\end{equation}
+we can re-write it using this new information
+\begin{equation}
+r + re\cos\nu = a(1 - e^{2})
+\end{equation}
+Now substituting for $r\cos\nu$
+\begin{equation}
+r + ae(\cos E - e) = a(1 - e^{2})
+\end{equation}
+or
+\begin{equation}
+r = a(1 - e\cos E)
+\end{equation}
+To obtain now $\dot{r}$ we only need to differentiate this last expression respect to time, which yields
+\begin{equation}
+\dot{r}  = ae\sin E\frac{dE}{d\tau}
+\end{equation}
+
+Before starting to determine the Orbital Elements of the asteroid, it is needed to derive one last equation, i.e. Kepler's equation. This equation is essential when solving celestial mechanics problems, as it gives us the relation between the polar coordinates of a celestial body and the time elapsed from a given initial point. Using some of the equations derived previously, we will now be able to obtain it. From equations () and () we can see that
+\begin{equation}
+\dot{r} = \sqrt{v^{2} - h^{2}/r^{2}}
+\end{equation}
+We need now to recall from equation (22) that $h^{2} = a\mu(1 - e^{2})$ and from Conservation of Energy that $v^{2} = \mu[(2/r) - (1/a)]$. Substituting for $v^{2}$ and $h^{2}$ in equation (48) and noting from equation (46) that $r = a - ae\cos E$, we find that
+\begin{equation}
+\dot{r} = \sqrt{a\mu}(\frac{e\sin E}{r})
+\end{equation}
+Now, we can see from equations (47) and (49) that the mutual factor $e\sin E$ can be simplified. Multiplying the obtained expression by equation (46) we see that
+\begin{equation}
+(1 - e\cos E)\frac{dE}{d\tau} = \frac{\sqrt{\mu}}{a^{3}}
+\end{equation} 
+Integrating now this expression over the orbital period (P)
+\begin{equation}
+\int^{2\pi}_{0}(1 - e\cos E)dE = \int^{P}_{0}\frac{\sqrt{\mu}}{a^{3}}dt
+\end{equation}
+and hence
+\begin{equation}
+2\pi = P\frac{\sqrt{\mu}}{a^{3}}
+\end{equation}
+If we substitute the definition of $\mu$ (equation whatever), we obtain the Newton's generalization of Kepler's Third Law:
+\begin{equation}
+G(m_{1} + m_{2})P^{2} = 4\pi^{2}a^{3}
+\end{equation}
+Note now that both the true anomaly $\nu$ and the eccentric anomaly $E$ have non-uniform changing rates, i.e. neither $\dot{E}$ nor $\dot{\nu}$ are constant. For this reason, it is convenient to define an angular quantity which does change uniformly. Let
+\begin{equation}
+n = \frac{2\pi}{P} = \sqrt{\frac{\mu}{a^{3}}}
+\end{equation} 
+We can identify $n$ as the mean angular motion. Substituting now this last equation in equation (50), we obtain
+\begin{equation}
+ndt = (1 - e\cos E)dE
+\end{equation}
+Integrating this equation we will find that
+\begin{equation}
+n(t - T) = E - e\sin E
+\end{equation}
+where the constant of integration has been chosen such that $T$ is the time of perihelion passage, i.e. $E = 0$ at $t = T$. We are able to define now the mean anomaly $M$ as
+\begin{equation}
+M = E - e\sin E
+\end{equation}
+This is Kepler's Equation, which can be as well expressed as $M = n(t - T)$, where $t$ is the time of observation and $E$ is the eccentric anomaly at time $t$. Note that the convenient property of $M$ is that it increases linearly with time, thus given $M$ at some time ($t$) and the corresponding eccentricity of the orbit ($e$), one can find $E$ at any later time and calculate the asteroid's position at that time by working backwards through the above derivation. 
+
+\paragraph{}As stated in earlier chapters, the main purpose of determining an orbit is finding its orbital elements given $\vec{r}$ and $\vec{\dot{r}}$ at any point of the orbit. Nonetheless, we still ignore both the orbital elements and the required vectors. In the first section of this chapter, all the derivations performed until now will be used to determine each orbital element as a function of $\vec{r}$ and $\vec{\dot{r}}$. After that, the Gauss's method of orbital determination will be applied so as to find the corresponding vectors and hence determining the orbit of the asteroid.
+\subsection{Determination of the Orbital elements}
+\subsubsection{Semi-major Axis}
+Recall from the the Conservation of Energy section that $v^{2} = \mu(\frac{2}{r} - \frac{1}{a})$. Hence
+\begin{equation}
+a = \frac{1}{(\frac{2}{r} - \frac{v^{2}}{\mu} )}
+\end{equation}
+In this case, we want to express the semi-major axis of the orbit as a function of $\vec{r}$ and $\vec{\dot{r}}$
+\begin{equation}
+a = \frac{1}{(\frac{2}{|\vec{r}|} - \frac{\vec{\dot{r}}\cdot\vec{\dot{r}}}{\mu})}
+\end{equation}
+\subsubsection{Eccentricity}
+From equation (), we know that
+\begin{equation}
+e = \sqrt{1 - \frac{h^{2}}{a\mu}}
+\end{equation}
+Since $\vec{h} = \vec{r}\times\vec{\dot{r}}$, this last equation can be re-written in terms of $\vec{r}$ and $\vec{\dot{r}}$ by the expression
+\begin{equation}
+e = \sqrt{1 - \frac{|\vec{r}\times\vec{\dot{r}}|^{2}}{a\mu}}
+\end{equation}
+\subsubsection{Orbit Inclination}
+Orient the viewing angle such that the line of sight is along the line of the nodes of the orbit (see fig whatever). From this perspective $\vec{h}$ lies in the plane of the page. We can easily see that
+\begin{equation}
+\cos i = \frac{\vec{h_{z}}}{|\vec{h}|}
+\end{equation}
+Where $\vec{h_{z}}$ is the $z$ component of the vector $\vec{h}$. Since the components of $\vec{h}$ can be expressed in terms of $\vec{r}$ and $\vec{\dot{r}}$, this is the desired expression.
+\subsubsection{Longitude of the Ascending Node}
+In this case. we have to visualize the $x,y$ plane of the orbit and the line of nodes as if they were lying on the plane of the paper (see fig nya). Thus, we can see that the projection of $h$ onto the $x,y$ plane is equal to $h\sin i$. Hence, we can establish the following relationships
+\begin{align}(h\sin i)\cos(90 - \Omega) &= h_{x} \notag \\
+(h\sin i)\sin(90 - \Omega) &= -h_{z}\end{align}
+Which can be solved to yield
+\begin{align}
+\sin\Omega &= \frac{h_{x}}{h\sin i}        \notag \\
+\cos\Omega &= -\frac{h_{y}}{h\sin i}
+\end{align}
+Obtaining thus an expression that can be formulated in terms of the desired vectors.
+\subsubsection{Argument of Perihelion}
+We first need to find the distance $U$ (in radians) travelled along the orbit since crossing the ascending node. Considering that the true anomaly ($\nu$) is measured from perihelion to the asteroid's position, we can determine that 
+\begin{equation}\omega = U - \nu\end{equation}
+(fig)
+Let then $\hat{n}$ be a unit vector with its origin in the sun and pointing towards the ascending node. Hence, we can define after considering the definition of the product
+\begin{align}Ê
+\vec{r}\cdot\hat{n} &= r\cos U      \notag \\
+&= x\cos\Omega + y\sin\Omega
+\end{align}
+Note that since $\hat{n} = \hat{i}\cos\Omega + \hat{j}\sin\Omega$, we can rewrite equation (something) as 
+\begin{align}
+\cos U = \frac{x\cos\Omega + z\sin\Omega}{r}
+\end{align}
+Nonetheless, it has to be taken into account that since $\cos U = \cos(-U)$, we will have to deal with angle ambiguity in the quadrant of $U$. So as to solve this problem, we will have to define $\sin U$. Thus, considering that 
+\begin{align}
+\hat{n}\times\hat{r} &= \hat{n}\times\frac{\vec{r}}{r}        \notag \\ 
+&= \frac{1}{r}[z\sin\Omega\hat{i} - z\cos\Omega\hat{j} - (x\sin\Omega - y\cos\Omega)\hat{k}]
+\end{align}
+And noting that since $\hat{n}\times\hat{r}$ is parallel to the unit vector $\hat{h}$, we can consider that $\hat{n}\times\hat{r} = \hat{h}\sin U$. In this case, the projection of this last expression onto the $x,y$ plane is given by $\sin U \sin i$, having as the x-component $(\sin U \sin i)\sin\Omega$. Taking now the x-component found on equation () and equating both expressions, we can obtain that
+\begin{equation}\frac{z}{r}\sin\Omega = \sin U\sin i\sin\Omega ,\end{equation}
+and hence
+\begin{equation}\sin U = \frac{z}{r\sin i}\end{equation}
+Having now solved the problem of angle ambiguity, [Notes]
+\subsubsection{Mean Anomaly}
+[Notes]
+\subsection{Gauss's Method of Orbit Determination}\label{gauss}
+[Introduction]
+\subsubsection{Units}
+Before getting started with this method, a few comments about the use of units ned to be considered. We start by recalling from equation () that
+\begin{equation}P = \frac{2\pi a^{3/2}}{\sqrt{G(m_{1} + m_2)}} \end{equation}
+In our case, as $m_1 = M_{\odot}$ and $m_{2}$ is the mass of the asteroid, equation () can be rewritten as
+\begin{equation}P = \frac{2\pi a^{3/2}}{\sqrt{GM_{\odot}}\sqrt{1 + (m_{2}/M_{\odot})}} = \frac{2\pi a^{3/2}}{k\sqrt{1 + (m_{2}/M_{\odot}})} \end{equation}
+Where $k = 0.01720209895$ when $a$ is in AU and $P$ in days, as calculated by Gauss in 1809. Considering now our particular case, we can consider that $m_{2}/M_{nya}$ is essentially zero, and hence
+\begin{equation}\mu = GM_{\odot}(1 + m_{2}/M_{\odot}) \approx GM_{\odot} = k^{2} \end{equation}
+and
+\begin{equation}P = \frac{2\pi a^{2/3}}{k}\end{equation}
+\subsubsection{Gauss's Method: Preliminaries}
+\subsubsection{The $f$ and $g$ series}
+\subsubsection{Gauss's Method: Getting Higher Order Terms}
+\subsection{Equatorial and Ecliptic Coordinates}\label{coordinates}
+\subsubsection{Rotation of $r$ and $\dot{r}$ to Ecliptic Coordinates}
+\subsubsection{Rotation of $i$, $\Omega$ and $\omega$ to the Ecliptic Frame}
+
+\newpage
+
+\section{Results and Conclusion}\label{results}
+\subsection{Degree of confidence}\label{confidence}
+\subsection{Impact risk}\label{risk}
+
+%\appendix
+%\section{Programming for the Orbit Determination}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% BIBLIOGRAPHY AND OTHER LISTS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% A small distance to the other stuff in the table of contents (toc)
+\addtocontents{toc}{\protect\vspace*{\baselineskip}}
+
+%% The Bibliography
+%% ==> You need a file 'literature.bib' for this.
+%% ==> You need to run BibTeX for this (Project | Properties... | Uses BibTeX)
+%\addcontentsline{toc}{chapter}{Bibliography} %'Bibliography' into toc
+%\nocite{*} %Even non-cited BibTeX-Entries will be shown.
+%\bibliographystyle{alpha} %Style of Bibliography: plain / apalike / amsalpha / ...
+%\bibliography{literature} %You need a file 'literature.bib' for this.
+
+%% The List of Figures
+%\clearpage
+%\addcontentsline{toc}{chapter}{List of Figures}
+%\listoffigures
+
+%% The List of Tables
+%\clearpage
+%\addcontentsline{toc}{chapter}{List of Tables}
+%\listoftables
+
+\end{document}
+
